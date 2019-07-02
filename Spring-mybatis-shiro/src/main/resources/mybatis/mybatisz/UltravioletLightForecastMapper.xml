@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myspring7z.framework.mybatisz.repository.UltravioletLightForecastDao">
+
+<sql id="uvlForecastColumns">
+		a.id AS "id",
+		a.create_date AS "createDate",
+		a.date_time AS "dateTime",
+		a.status AS "status",
+		a.station_code AS "stationCode",
+		a.forecast_level AS "forecastLevel",
+		a.radiation_avg AS "radiationAvg",
+		a.radiation_max AS "radiationMax",
+		a.file_name AS "fileName"
+	</sql>
+	
+	<sql id="uvlForecastJoins">
+	</sql>
+	
+	<select id="get" resultType="UltravioletLightForecast">
+		SELECT 
+			<include refid="uvlForecastColumns"/>
+		FROM base_ultra_violet_light_forecast a
+		<include refid="uvlForecastJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="UltravioletLightForecast">
+		SELECT 
+			<include refid="uvlForecastColumns"/>
+		FROM base_ultra_violet_light_forecast a
+		<include refid="uvlForecastJoins"/>
+		<where>
+			<if test="id != null and id != ''">
+				AND a.id = #{id}
+			</if>
+			<if test="dateTime != null and dateTime != ''">
+				AND a.date_time = #{dateTime}	
+			</if>
+			<if test="status != null and status != ''">
+				AND a.status = #{status}
+			</if>
+			<if test="stationCode != null and stationCode != ''">
+				AND a.station_code = #{stationCode}
+			</if>
+			<if test="fileName != null and fileName != ''">
+				AND a.file_name = #{fileName}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findAllList" resultType="UltravioletLightForecast">
+		SELECT 
+			<include refid="uvlForecastColumns"/>
+		FROM base_ultra_violet_light_forecast a
+		<include refid="uvlForecastJoins"/>		
+	</select>
+	
+	<!-- 根据时次获取所有UltravioletLightForecast  -->
+	<select id="getUVLForecastsByDateTime" resultType="UltravioletLightForecast">
+		SELECT 
+			<include refid="uvlForecastColumns"/>
+		FROM base_ultra_violet_light_forecast a
+		<include refid="uvlForecastJoins"/>
+		<where>
+			<if test="dateTime != null and dateTime != ''">
+				AND a.date_time = #{dateTime}
+			</if>
+		</where>
+			ORDER BY create_date ASC
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO base_ultra_violet_light_forecast(
+			id,
+			create_date,
+			date_time,
+			status,
+			station_code,
+			forecast_level,
+			radiation_avg,
+			radiation_max,
+			file_name
+		) VALUES (
+			#{id},
+			#{createDate},
+			#{dateTime},
+			#{status},
+			#{stationCode},
+			#{forecastLevel},
+			#{radiationAvg},
+			#{radiationMax},
+			#{fileName}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE base_ultra_violet_light_forecast SET 	
+			date_time = #{dateTime},
+			status = #{status},
+			station_code = #{stationCode},
+			forecast_level = #{forecastLevel},
+			radiation_avg = #{radiationAvg},
+			radiation_max = #{radiationMax},
+			file_name = #{fileName}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM base_ultra_violet_light_forecast
+		WHERE id = #{id}
+	</update>
+
+</mapper>

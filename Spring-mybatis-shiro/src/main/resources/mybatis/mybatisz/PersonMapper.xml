@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.myspring7z.framework.testtwo.dao.PersonDao">
+
+	<!--
+		获取用户: 输出直接映射到对象, login_name列要"as loginName"以方便映射 
+	-->
+	<select id="get" parameterType="long" resultType="Person">
+		select id as id,
+		name as name
+		from test_person 
+		where id=#{id}
+	</select>
+	
+	<!-- 插入用户： 1.由数据库生成id并赋值到user对象 2.输入用对象 -->
+	<insert id="save" parameterType="Person" useGeneratedKeys="true" keyProperty="id">
+		insert into test_person (
+		name)
+		values (
+		#{name})
+	</insert>
+	
+</mapper> 

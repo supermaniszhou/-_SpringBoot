@@ -1,0 +1,95 @@
+body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}
+
+.index{
+	padding:0px;
+	margin-left:0px;
+	overflow-x:hidden;
+}
+
+.headerBorder{
+	height:50px;
+	border: solid 1px #336699;
+	line-height: 50px;
+	padding-left:70px;
+}
+
+.border{
+	border: solid 1px #336699;
+}
+
+.borderC0{
+	border: solid 1px #c0c0c0;
+}
+
+.borderNoTop{
+	border:1px solid #336699;
+	border-top:1px solid #ffffff;
+	border-left:1px solid #336699;
+	border-right:1px solid #336699;
+	border-bottom:1px solid #336699;
+}
+
+.borderNoBottom{
+	border:1px solid #336699;
+	border-top:1px solid #336699;
+	border-left:1px solid #336699;
+	border-right:1px solid #336699;
+	border-bottom:1px solid #ffffff;
+}
+
+.borderNoTopAndBottom{
+	border:1px solid #336699;
+	border-top:1px solid #ffffff;
+	border-left:1px solid #336699;
+	border-right:1px solid #336699;
+	border-bottom:1px solid #ffffff;
+}
+
+.noBorder{
+	border:0px;
+}
+
+.main{
+	margin-top:20px;
+}
+
+.line{
+	height:1px;
+	border:1px solid #336699;
+	border-left:1px solid #ffffff;
+	border-right:1px solid #ffffff;
+	border-bottom:1px solid #ffffff;
+}
+
+.bottom{
+	margin-bottom:20px;
+}
+
+.btn-bottom{
+	margin-bottom:5px;
+}
+
+.padding10{
+	padding:10px;
+}
+
+.height10{
+	height:10px;
+}
+
+.height20{
+	height:20px;
+}
+
+.cursorPointer{
+	cursor:pointer;
+}
+
+.breakText{
+	word-wrap:break-word; 
+	word-break:break-all; 
+}
+
+.spanBlankSpace{
+	line-height: 30px;
+}

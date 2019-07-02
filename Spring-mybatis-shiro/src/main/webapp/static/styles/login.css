@@ -1,0 +1,25 @@
+.rowheight150{
+	height:150px;
+}
+
+.red-font{
+	color:red;
+}
+
+.center{
+	height:460px;
+	border:1px solid #336699;
+	border-right:1px solid #ffffff;
+	border-bottom:1px solid #ffffff;
+	padding:40px;
+}
+
+.buttonWidth{
+	
+	width:140px;
+	margin-top:10px;
+}
+
+.inputWidth{
+	width:65px;
+}

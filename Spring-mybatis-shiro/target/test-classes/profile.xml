@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<beans profile="h2">
+		<bean id="dataSource" class="com.myspring7z.framework.spring.bean.profiletest.DataSourceH2"></bean>
+	</beans>
+	
+	<beans profile="jdni">
+		<bean id="dataSource" class="com.myspring7z.framework.spring.bean.profiletest.DataSourceJNDI"></bean>
+	</beans>
+	
+</beans>

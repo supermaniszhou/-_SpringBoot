@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.myspring7z.framework.mybatisz.shiro.chapter6.dao.Role6Dao">
+
+	<!--
+		获取用户: 输出直接映射到对象, login_name列要"as loginName"以方便映射 
+	-->
+	<select id="get" parameterType="long" resultType="Role6">
+		select id,
+		role as role,
+		description as description,
+		available as available
+		from sys_roles 
+		where id=#{id}
+	</select>
+	
+	<!-- 插入用户： 1.由数据库生成id并赋值到user对象 2.输入用对象 -->
+	<insert id="createRole" parameterType="Role6" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_roles (
+		role, description, available)
+		values (
+		#{role}, #{description}, #{available})
+	</insert>
+	
+	<delete id="deleteRole" parameterType="long">  
+        delete from sys_users_roles where role_id=#{roleId}
+	</delete>  
+	
+	<insert id="correlationPermissions">
+		insert into sys_roles_permissions(role_id, permission_id) values(#{roleId},#{permissionId})
+	</insert>
+	
+	<delete id="uncorrelationPermissions">  
+        delete from sys_roles_permissions where role_id=#{roleId} and permission_id=#{permissionId}
+	</delete> 
+	
+	<select id="exists" resultType="boolean"> 
+   		select count(1) from sys_roles_permissions where role_id=#{roleId} and permission_id=#{permissionId}
+	</select> 
+	
+	<delete id="deleteAllRoles">  
+        delete from sys_roles
+	</delete> 
+	
+	<delete id="deleteAllUserRoles">  
+        delete from sys_users_roles
+	</delete> 
+	
+</mapper> 
