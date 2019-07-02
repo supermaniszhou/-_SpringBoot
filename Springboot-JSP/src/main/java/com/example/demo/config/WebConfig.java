@@ -1,13 +1,18 @@
 package com.example.demo.config;
 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * 周刘成   2019/5/7
  */
-@Component
+@Configuration
+@EnableWebMvc
+@ComponentScan
 public class WebConfig implements WebMvcConfigurer {
 
     /**
@@ -23,4 +28,6 @@ public class WebConfig implements WebMvcConfigurer {
         //第一个方法设置访问路径前缀，第二个方法设置资源路径
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     }
+
+
 }
