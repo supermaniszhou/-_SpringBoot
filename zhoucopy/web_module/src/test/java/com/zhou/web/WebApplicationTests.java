@@ -1,4 +1,4 @@
-package com.zhou.zhoucopy;
+package com.zhou.web;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ZhoucopyApplicationTests {
+public class WebApplicationTests {
 
     @Test
     public void contextLoads() {
