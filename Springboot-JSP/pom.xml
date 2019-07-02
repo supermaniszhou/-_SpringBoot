@@ -24,11 +24,34 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
         <!-- servlet 依赖包 -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.14</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.51</version>
         </dependency>
 
         <!-- JSTL (JSP standard Tag Library) JSP 标准标签库 -->
@@ -67,6 +90,14 @@
             <artifactId>bootstrap</artifactId>
             <version>4.3.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>oracle.jdbc</groupId>
+            <artifactId>ojdbc14</artifactId>
+            <version>14.0</version>
+        </dependency>
+
+
 
 
 
