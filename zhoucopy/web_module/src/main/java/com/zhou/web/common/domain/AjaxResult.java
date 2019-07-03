@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 /**
  * 周刘成   2019/7/3
+ * ajax请求向前端返回json数据
  */
 public class AjaxResult extends HashMap<String, Object> implements Serializable {
     private static final long serialVersionUID = 8380281997683765526L;
@@ -56,8 +57,8 @@ public class AjaxResult extends HashMap<String, Object> implements Serializable 
         return new AjaxResult(type, msg);
     }
 
-    public static AjaxResult error(){
-        return error(Type.ERROR,"出错了！");
+    public static AjaxResult error() {
+        return error(Type.ERROR, "出错了！");
     }
 
 
@@ -82,9 +83,6 @@ public class AjaxResult extends HashMap<String, Object> implements Serializable 
             this.value = value;
         }
 
-//        public int value() {
-//            return this.value;
-//        }
     }
 
     public Type getType() {
