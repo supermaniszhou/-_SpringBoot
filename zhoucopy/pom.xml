@@ -32,9 +32,17 @@
         <poi.version>3.17</poi.version>
         <velocity.version>1.7</velocity.version>
         <bitwalker.version>1.19</bitwalker.version>
+        <oracle.version>14.0</oracle.version>
     </properties>
 
     <dependencies>
+
+        <!-- oracle 驱动包 -->
+        <dependency>
+            <groupId>oracle.jdbc</groupId>
+            <artifactId>ojdbc14</artifactId>
+            <version>${oracle.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
