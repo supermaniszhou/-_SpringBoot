@@ -13,7 +13,12 @@ public class LoginConfig implements WebMvcConfigurer {
 
     @Value("${shiro.user.loginUrl}")
     private String loginUrl;
+    @Value("${shiro.user.indexUrl}")
+    private String indexUrl;
 
+    /**
+     * 设置访问localhost 默认打开的页面
+     */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("forward:" + loginUrl);
