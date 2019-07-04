@@ -4,11 +4,14 @@ import com.zhou.web.common.util.StringUtils;
 import net.sf.ehcache.CacheManager;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
+import org.apache.shiro.codec.Base64;
 import org.apache.shiro.config.ConfigurationException;
 import org.apache.shiro.io.ResourceUtils;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,9 +29,53 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-    //登录地址
+    // Session超时时间，单位为毫秒（默认30分钟）
+    @Value("${shiro.session.expireTime}")
+    private int expireTime;
+
+    // 相隔多久检查一次session的有效性，单位毫秒，默认就是10分钟
+    @Value("${shiro.session.validationInterval}")
+    private int validationInterval;
+
+    // 同一个用户最大会话数
+    @Value("${shiro.session.maxSession}")
+    private int maxSession;
+
+    // 踢出之前登录的/之后登录的用户，默认踢出之前登录的用户
+    @Value("${shiro.session.kickoutAfter}")
+    private boolean kickoutAfter;
+
+    // 验证码开关
+    @Value("${shiro.user.captchaEnabled}")
+    private boolean captchaEnabled;
+
+    // 验证码类型
+    @Value("${shiro.user.captchaType}")
+    private String captchaType;
+
+    // 设置Cookie的域名
+    @Value("${shiro.cookie.domain}")
+    private String domain;
+
+    // 设置cookie的有效访问路径
+    @Value("${shiro.cookie.path}")
+    private String path;
+
+    // 设置HttpOnly属性
+    @Value("${shiro.cookie.httpOnly}")
+    private boolean httpOnly;
+
+    // 设置Cookie的过期时间，秒为单位
+    @Value("${shiro.cookie.maxAge}")
+    private int maxAge;
+
+    // 登录地址
     @Value("${shiro.user.loginUrl}")
     private String loginUrl;
+
+    // 权限认证失败地址
+    @Value("${shiro.user.unauthorizedUrl}")
+    private String unauthorizedUrl;
 
     /**
      * 缓存管理，使用ehcache实现
@@ -73,15 +120,37 @@ public class ShiroConfig {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         //注入缓存管理器
         securityManager.setCacheManager(getEhCachemanager());
+        // 记住我
+        securityManager.setRememberMeManager(rememberMeManager());
         return securityManager;
+    }
+
+    public SimpleCookie rememberMeCookie() {
+        SimpleCookie cookie = new SimpleCookie("rememberMe");
+        cookie.setDomain(domain);
+        cookie.setPath(path);
+        cookie.setHttpOnly(httpOnly);
+        cookie.setMaxAge(maxAge * 24 * 60 * 60);
+        return cookie;
+    }
+
+    /**
+     * 记住我
+     *
+     * @return
+     */
+    public CookieRememberMeManager rememberMeManager() {
+        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+        cookieRememberMeManager.setCookie(rememberMeCookie());
+        cookieRememberMeManager.setCipherKey(Base64.decode("fCq+/xW488hMTCD+cmJ3aQ=="));
+        return cookieRememberMeManager;
     }
 
     /**
      * Shiro过滤器配置
      */
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager)
-    {
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         // Shiro的核心安全接口,这个属性是必须的
         shiroFilterFactoryBean.setSecurityManager(securityManager);
@@ -106,7 +175,8 @@ public class ShiroConfig {
         // 退出 logout地址，shiro去清除session
         filterChainDefinitionMap.put("/logout", "logout");
         // 不需要拦截的访问
-        filterChainDefinitionMap.put("/login", "anon,captchaValidate");
+//        filterChainDefinitionMap.put("/login", "anon,captchaValidate");
+        filterChainDefinitionMap.put("/login", "anon");
         // 系统权限列表
         // filterChainDefinitionMap.putAll(SpringUtils.getBean(IMenuService.class).selectPermsAll());
 
@@ -120,7 +190,7 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setFilters(filters);
 
         // 所有请求需要认证
-        filterChainDefinitionMap.put("/**", "user,kickout,onlineSession,syncOnlineSession");
+//        filterChainDefinitionMap.put("/**", "user,kickout,onlineSession,syncOnlineSession");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
         return shiroFilterFactoryBean;
