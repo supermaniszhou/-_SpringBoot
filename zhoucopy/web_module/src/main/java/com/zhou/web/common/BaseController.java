@@ -1,7 +1,6 @@
 package com.zhou.web.common;
 
 import com.zhou.web.common.util.ServletUtils;
-import com.zhou.web.common.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
