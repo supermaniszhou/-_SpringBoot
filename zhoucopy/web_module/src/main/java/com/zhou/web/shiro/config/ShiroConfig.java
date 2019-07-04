@@ -1,4 +1,4 @@
-package com.zhou.web.config;
+package com.zhou.web.shiro.config;
 
 import com.zhou.web.common.util.StringUtils;
 import net.sf.ehcache.CacheManager;
