@@ -1,6 +1,7 @@
 package com.zhou.web.shiro.config;
 
 import com.zhou.web.common.util.StringUtils;
+import com.zhou.web.shiro.web.filter.captcha.CaptchaValidateFilter;
 import net.sf.ehcache.CacheManager;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
@@ -146,6 +147,14 @@ public class ShiroConfig {
         return cookieRememberMeManager;
     }
 
+    @Bean
+    public CaptchaValidateFilter captchaValidateFilter() {
+        CaptchaValidateFilter filter = new CaptchaValidateFilter();
+        filter.setCaptchaEnabled(captchaEnabled);
+        filter.setCaptchaType(captchaType);
+        return filter;
+    }
+
     /**
      * Shiro过滤器配置
      */
@@ -183,7 +192,7 @@ public class ShiroConfig {
         Map<String, Filter> filters = new LinkedHashMap<String, Filter>();
 //        filters.put("onlineSession", onlineSessionFilter());
 //        filters.put("syncOnlineSession", syncOnlineSessionFilter());
-//        filters.put("captchaValidate", captchaValidateFilter());
+        filters.put("captchaValidate", captchaValidateFilter());
 //        filters.put("kickout", kickoutSessionFilter());
         // 注销成功，则跳转到指定页面
 //        filters.put("logout", logoutFilter());
