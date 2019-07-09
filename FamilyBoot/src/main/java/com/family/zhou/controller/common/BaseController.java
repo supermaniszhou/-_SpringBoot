@@ -11,23 +11,23 @@ public class BaseController {
 
 
     public AjaxResult success(String msg, Object object, Long count) {
-        return new AjaxResult(msg, "0", object, count);
+        return new AjaxResult(msg, AjaxResult.Type.SUCCESS_CODE, object, count);
     }
 
     public AjaxResult success(String msg) {
-        return new AjaxResult("0", msg);
+        return new AjaxResult(AjaxResult.Type.SUCCESS_CODE, msg);
     }
 
     public AjaxResult success() {
-        return new AjaxResult("0", "操作成功！");
+        return new AjaxResult(AjaxResult.Type.SUCCESS_CODE, "操作成功！");
     }
 
     public AjaxResult error(String msg) {
-        return new AjaxResult("-1", msg);
+        return new AjaxResult(AjaxResult.Type.ERROR_CODE, msg);
     }
 
     public AjaxResult error() {
-        return new AjaxResult("-1", "操作出错了！");
+        return new AjaxResult(AjaxResult.Type.ERROR_CODE, "操作出错了！");
     }
 
     /**

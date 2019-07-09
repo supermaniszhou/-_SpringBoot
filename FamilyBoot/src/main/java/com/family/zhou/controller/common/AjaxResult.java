@@ -12,8 +12,6 @@ import java.util.HashMap;
 @Setter
 public class AjaxResult extends HashMap {
 
-    private static final String SUCCESS_CODE = "0";
-    private static final String ERROR_CODE = "-1";
 
     private String msg;
 
@@ -23,28 +21,27 @@ public class AjaxResult extends HashMap {
 
     private Long count;
 
-    public AjaxResult(String msg, String code, Object data, Long count) {
+    public AjaxResult(String msg, Type code, Object data, Long count) {
         this.put("code", code);
         this.put("msg", msg);
         this.put("data", data);
         this.put("count", count);
     }
 
-    public AjaxResult(String code, String msg) {
+    public AjaxResult(Type code, String msg) {
         this.put("code", code);
         this.put("msg", msg);
     }
 
 
-
     public enum Type {
-        SUCCESS_CODE(0),
+        SUCCESS_CODE("0"),
 
-        ERROR_CODE(-1);
+        ERROR_CODE("-1");
 
-        private final int value;
+        private final String value;
 
-        Type(int value) {
+        Type(String value) {
             this.value = value;
         }
 
