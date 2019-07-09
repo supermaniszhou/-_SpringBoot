@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-@MapperScan("com.family.zhou.mapper")
+@MapperScan("com.family.zhou.mapper.*")
 public class ZhouApplication {
 
     public static void main(String[] args) {
