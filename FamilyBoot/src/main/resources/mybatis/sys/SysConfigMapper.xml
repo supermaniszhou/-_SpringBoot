@@ -4,16 +4,38 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.family.zhou.pojo.SysConfig">
-        <id column="config_id" property="configId" />
-        <result column="config_name" property="configName" />
-        <result column="config_key" property="configKey" />
-        <result column="config_value" property="configValue" />
-        <result column="config_type" property="configType" />
-        <result column="create_by" property="createBy" />
-        <result column="create_time" property="createTime" />
-        <result column="update_by" property="updateBy" />
-        <result column="update_time" property="updateTime" />
-        <result column="remark" property="remark" />
+        <id column="config_id" property="configId"/>
+        <result column="config_name" property="configName"/>
+        <result column="config_key" property="configKey"/>
+        <result column="config_value" property="configValue"/>
+        <result column="config_type" property="configType"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
     </resultMap>
+    <!--    列-->
+    <sql id="columnList">
+        config_id,config_name,config_key,config_value,config_type,create_by,create_time,update_by,update_time,remark
+    </sql>
+    <sql id="selectSql">
+        select <include refid="columnList"></include> from sys_config
+    </sql>
+    <!--    条件-->
+    <sql id="whereCondition">
+        <where>
+            <if test="configId != null">
+                and config_id=#{configId}
+            </if>
+            <if test="configKey !=null and configKey !=''">
+                and config_key=#{configKey}
+            </if>
+        </where>
+    </sql>
+    <select id="selectValueByKey" resultMap="BaseResultMap" parameterType="com.family.zhou.pojo.SysConfig">
+        <include refid="selectSql"></include>
+        <include refid="whereCondition"></include>
+    </select>
 
 </mapper>

@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface SysConfigService extends IService<SysConfig> {
 
+    String selectValueByKey(SysConfig sysConfig);
 }
