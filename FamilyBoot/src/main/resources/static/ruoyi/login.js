@@ -1,3 +1,7 @@
+$(function () {
+    validaterule();
+});
+
 $.validator.setDefaults({
     submitHandler: function () {
         login();
@@ -5,10 +9,11 @@ $.validator.setDefaults({
 });
 
 function login() {
-    $.modal.loading($("#btnSubmit").data("loading"));
+    debugger;
+    // $.modal.loading($("#btnSubmit").data("loading"));
     var username = $.common.trim($("#username").val());
     var password = $.common.trim($("#password").val());
-    $.post(ctx + "doLogin", {loginName: username, password: password}, function (data) {
+    $.post("/doLogin", {loginName: username, password: password}, function (data) {
         console.log(data);
     });
 }

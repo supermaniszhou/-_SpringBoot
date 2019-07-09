@@ -24,20 +24,29 @@ public class AjaxResult extends HashMap {
     private Long count;
 
     public AjaxResult(String msg, String code, Object data, Long count) {
-        this.msg = msg;
-        this.data = data;
-        this.code = code;
-        this.count = count;
+        this.put("code", code);
+        this.put("msg", msg);
+        this.put("data", data);
+        this.put("count", count);
     }
 
     public AjaxResult(String code, String msg) {
-        this.msg = msg;
-        this.code = code;
+        this.put("code", code);
+        this.put("msg", msg);
     }
 
-    public AjaxResult(String msg, Object data, Long count) {
-        this.msg = msg;
-        this.data = data;
-        this.count = count;
+
+
+    public enum Type {
+        SUCCESS_CODE(0),
+
+        ERROR_CODE(-1);
+
+        private final int value;
+
+        Type(int value) {
+            this.value = value;
+        }
+
     }
 }
