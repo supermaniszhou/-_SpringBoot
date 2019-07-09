@@ -82,7 +82,7 @@ public class MybatisPlusGenerator {
         StrategyConfig strategyConfig = new StrategyConfig();
 //        strategyConfig.setTablePrefix()
         strategyConfig.setNaming(NamingStrategy.underline_to_camel);
-        strategyConfig.setInclude(new String[]{"sys_user"});
+        strategyConfig.setInclude(new String[]{"sys_config"});
 
         strategyConfig.setSuperServiceClass(null);
         strategyConfig.setSuperServiceImplClass(null);
