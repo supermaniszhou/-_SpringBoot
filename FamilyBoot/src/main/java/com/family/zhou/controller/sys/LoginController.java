@@ -1,4 +1,4 @@
-package com.family.zhou.controller;
+package com.family.zhou.controller.sys;
 
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.family.zhou.controller.common.AjaxResult;

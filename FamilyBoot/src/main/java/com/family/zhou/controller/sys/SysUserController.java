@@ -1,4 +1,4 @@
-package com.family.zhou.controller;
+package com.family.zhou.controller.sys;
 
 
 import com.family.zhou.controller.common.BaseController;
