@@ -15,9 +15,9 @@
     <link href="../static/css/animate.css" th:href="@{/css/animate.css}" rel="stylesheet"/>
     <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
     <link href="../static/css/skins.css" th:href="@{/css/skins.css}" rel="stylesheet"/>
-    <link th:href="@{/ruoyi/css/ry-ui.css?}" rel="stylesheet"/>
+    <link th:href="@{/ruoyi/css/ry-ui.css}" rel="stylesheet"/>
 </head>
-<body class="fixed-sidebar full-height-layout gray-bg" style="overflow: hidden" th:classappend="${@}">
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow: hidden" th:classappend="${@config.getValueByKey('sys.index.skinName')}">
 
 </body>
 </html>
