@@ -9,12 +9,16 @@ $.validator.setDefaults({
 });
 
 function login() {
-    debugger;
-    // $.modal.loading($("#btnSubmit").data("loading"));
+    $.smodel.loading($("#btnSubmit").data("loading"));
     var username = $.common.trim($("#username").val());
     var password = $.common.trim($("#password").val());
-    $.post("/doLogin", {loginName: username, password: password}, function (data) {
-        console.log(data);
+    $.post(ctx + "doLogin", {loginName: username, password: password}, function (data) {
+        if (data.code == 0) {
+            location.href = "/index";
+        } else {
+            $.smodel.closeLoading();
+            $.smodel.msg(data.msg);
+        }
     });
 }
 

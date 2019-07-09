@@ -41,7 +41,8 @@ public class LoginController extends BaseController {
         SysUser user = sysUserService.selectSysUserByName(sysUser);
         if (user != null) {
             return success();
+        } else {
+            return error("用户名或者密码不正确！");
         }
-        return error();
     }
 }

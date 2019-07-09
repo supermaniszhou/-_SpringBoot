@@ -56,6 +56,28 @@
                 });
                 return json;
             }
+        },
+        smodel: {
+            // 打开遮罩层
+            loading: function (message) {
+                $.blockUI({ message: '<div class="loaderbox"><div class="loading-activity"></div> ' + message + '</div>' });
+
+            },
+            // 关闭遮罩层
+            closeLoading: function () {
+                setTimeout(function(){
+                    $.unblockUI();
+                }, 50);
+            },
+            // 消息提示
+            msg: function(content, type) {
+                if (type != undefined) {
+                    layer.msg(content, { icon: $.modal.icon(type), time: 1000, shift: 5 });
+                } else {
+                    layer.msg(content);
+                }
+            },
         }
-    });
+    })
+    ;
 })(jQuery);
