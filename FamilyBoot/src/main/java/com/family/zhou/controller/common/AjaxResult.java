@@ -22,14 +22,14 @@ public class AjaxResult extends HashMap {
     private Long count;
 
     public AjaxResult(String msg, Type code, Object data, Long count) {
-        this.put("code", code);
+        this.put("code", code.value);
         this.put("msg", msg);
         this.put("data", data);
         this.put("count", count);
     }
 
     public AjaxResult(Type code, String msg) {
-        this.put("code", code);
+        this.put("code", code.value);
         this.put("msg", msg);
     }
 
@@ -43,6 +43,10 @@ public class AjaxResult extends HashMap {
 
         Type(String value) {
             this.value = value;
+        }
+
+        public String value() {
+            return this.value;
         }
 
     }
