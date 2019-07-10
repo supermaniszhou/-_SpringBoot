@@ -82,7 +82,7 @@ public class MybatisPlusGenerator {
         StrategyConfig strategyConfig = new StrategyConfig();
 //        strategyConfig.setTablePrefix()
         strategyConfig.setNaming(NamingStrategy.underline_to_camel);
-        strategyConfig.setInclude(new String[]{"sys_config"});
+        strategyConfig.setInclude(new String[]{"sys_menu"});
 
         strategyConfig.setSuperServiceClass(null);
         strategyConfig.setSuperServiceImplClass(null);
@@ -92,7 +92,7 @@ public class MybatisPlusGenerator {
         PackageConfig pc = new PackageConfig();
 //        pc.setModuleName(scanner("模块名"));
         pc.setParent("com.family.zhou");
-        pc.setController("controller");
+        pc.setController("controller.sys");
         pc.setService("service");
         pc.setServiceImpl("service.impl");
         pc.setMapper("mapper");
