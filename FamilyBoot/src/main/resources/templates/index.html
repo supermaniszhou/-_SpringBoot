@@ -30,11 +30,39 @@
                     <span class="logo-lg">Family</span>
                 </li>
                 <li th:each="menu:${menus}">
-
+                    <a href="#">
+                        <i class="fa fa-bar-chart-o" th:class="${menu.icon}"></i>
+                        <span class="nav-label" th:text="${menu.menuName}"></span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li th:each="cmenu:${menu.children}">
+                            <a th:if="${#lists.isEmpty(cmenu.children)}" th:class="${cmenu.target == ''}?|menuItem|:${cmenu.target}" th:utext="${cmenu.menuName}" th:href="@{${cmenu.url}}"></a>
+                            <a th:if="${not #lists.isEmpty(cmenu.children)}" href="#">
+                                [[${cmenu.menuName}]]<span class="fa arrow"></span>
+                            </a>
+                            <ul th:if="${not #lists.isEmpty(cmenu.children)}" class="nav nav-third-level">
+                                <li th:each="emenu:${cmenu.children}">
+                                    <a  th:class="${cmenu.target == ''}?|menuItem|:${cmenu.target}" th:utext="${cmenu.menuName}" th:href="@{${cmenu.url}}"></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>
     </nav>
 </div>
+<!-- 全局js -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script th:src="@{/js/jquery.contextMenu.min.js}"></script>
+<script th:src="@{/ajax/libs/blockUI/jquery.blockUI.js}"></script>
+<script th:src="@{/ajax/libs/layer/layer.min.js}"></script>
+<script th:src="@{/ruoyi/js/ry-ui.js?v=3.4.0}"></script>
+<script th:src="@{/family/js/index.js}"></script>
+<script th:src="@{/ajax/libs/fullscreen/jquery.fullscreen.js}"></script>
 </body>
 </html>
