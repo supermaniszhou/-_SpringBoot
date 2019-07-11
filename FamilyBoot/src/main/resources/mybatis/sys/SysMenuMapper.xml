@@ -4,21 +4,30 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.family.zhou.pojo.SysMenu">
-        <id column="menu_id" property="menuId" />
-        <result column="menu_name" property="menuName" />
-        <result column="parent_id" property="parentId" />
-        <result column="order_num" property="orderNum" />
-        <result column="url" property="url" />
-        <result column="target" property="target" />
-        <result column="menu_type" property="menuType" />
-        <result column="visible" property="visible" />
-        <result column="perms" property="perms" />
-        <result column="icon" property="icon" />
-        <result column="create_by" property="createBy" />
-        <result column="create_time" property="createTime" />
-        <result column="update_by" property="updateBy" />
-        <result column="update_time" property="updateTime" />
-        <result column="remark" property="remark" />
+        <id column="menu_id" property="menuId"/>
+        <result column="menu_name" property="menuName"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="order_num" property="orderNum"/>
+        <result column="url" property="url"/>
+        <result column="target" property="target"/>
+        <result column="menu_type" property="menuType"/>
+        <result column="visible" property="visible"/>
+        <result column="perms" property="perms"/>
+        <result column="icon" property="icon"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
     </resultMap>
+    <sql id="columnList">
+        menu_id,menu_name,parent_id,order_num,url,target,menu_type,visible,perms,icon,create_by,create_time,update_by,update_time,remark
+    </sql>
 
+    <sql id="selectId">
+        select <include refid="columnList"></include> from sys_menu
+    </sql>
+    <select id="selectAllMenu" resultMap="BaseResultMap">
+        <include refid="selectId"></include>
+    </select>
 </mapper>
