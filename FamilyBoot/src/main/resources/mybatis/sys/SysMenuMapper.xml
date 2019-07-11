@@ -27,7 +27,14 @@
     <sql id="selectId">
         select <include refid="columnList"></include> from sys_menu
     </sql>
+
+    <sql id="whereId">
+        <where>
+            and visible='0' and menu_type in ('M','C')
+        </where>
+    </sql>
     <select id="selectAllMenu" resultMap="BaseResultMap">
         <include refid="selectId"></include>
+        <include refid="whereId"></include>
     </select>
 </mapper>
