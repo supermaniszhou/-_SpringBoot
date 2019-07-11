@@ -1,11 +1,16 @@
 package com.family.zhou.pojo;
 
 import com.baomidou.mybatisplus.enums.IdType;
+
+import java.util.ArrayList;
 import java.util.Date;
+
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -90,6 +95,15 @@ public class SysMenu implements Serializable {
      */
     private String remark;
 
+    private List<SysMenu> children = new ArrayList<>();
+
+    public List<SysMenu> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<SysMenu> children) {
+        this.children = children;
+    }
 
     public Long getMenuId() {
         return menuId;
@@ -214,21 +228,21 @@ public class SysMenu implements Serializable {
     @Override
     public String toString() {
         return "SysMenu{" +
-        "menuId=" + menuId +
-        ", menuName=" + menuName +
-        ", parentId=" + parentId +
-        ", orderNum=" + orderNum +
-        ", url=" + url +
-        ", target=" + target +
-        ", menuType=" + menuType +
-        ", visible=" + visible +
-        ", perms=" + perms +
-        ", icon=" + icon +
-        ", createBy=" + createBy +
-        ", createTime=" + createTime +
-        ", updateBy=" + updateBy +
-        ", updateTime=" + updateTime +
-        ", remark=" + remark +
-        "}";
+                "menuId=" + menuId +
+                ", menuName=" + menuName +
+                ", parentId=" + parentId +
+                ", orderNum=" + orderNum +
+                ", url=" + url +
+                ", target=" + target +
+                ", menuType=" + menuType +
+                ", visible=" + visible +
+                ", perms=" + perms +
+                ", icon=" + icon +
+                ", createBy=" + createBy +
+                ", createTime=" + createTime +
+                ", updateBy=" + updateBy +
+                ", updateTime=" + updateTime +
+                ", remark=" + remark +
+                "}";
     }
 }
